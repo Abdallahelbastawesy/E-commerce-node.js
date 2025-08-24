@@ -8,7 +8,7 @@ import { userRoutes } from "./src/modules/user/user.routes.js";
 import { orderRoutes } from "./src/modules/order/order.routes.js";
 import { productRoutes } from "./src/modules/product/product.routes.js";
 import { adminRoutes } from "./src/modules/admin/admin.routes.js";
-
+import { categoryRoutes } from "./src/modules/category/category.routes.js";
 import { userModel } from "./db/models/user.model.js"
 
 
@@ -46,6 +46,7 @@ const isAdmin = (req, res, next) => {
 app.use("/users", userRoutes);
 app.use("/orders", isAuth, orderRoutes);
 app.use("/products", productRoutes);
+app.use("/categories", isAuth, isAdmin, categoryRoutes);
 app.use("/admin", isAuth, isAdmin, adminRoutes);
 
 app.get("/", (req, res) => {
